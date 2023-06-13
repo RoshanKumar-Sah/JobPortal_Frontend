@@ -14,13 +14,11 @@ module.exports = {
       },
       colors: {
         "primary-dark": "#000000",
+        "primary-tint": "#595959",
         header: "#061421",
         secondary: "#595959",
         "secondary-tint": "#E9E9E9",
-        "primary-tint": "#595959",
-        "sub-text": "#8A8FB9",
         tertiary: "#f2f2f2",
-        // white: "#ffffff"
       }
     },
   },

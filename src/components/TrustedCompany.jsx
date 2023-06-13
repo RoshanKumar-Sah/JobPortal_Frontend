@@ -73,7 +73,7 @@ export default function TrustedCompany() {
     return <>
         <section>
             <div className='container'>
-                <div className='flex items-center gap-5 mt-28 mb-3'>
+                <div className='flex items-center gap-5 pt-28 pb-11'>
                     <p className={`text-lg ${exo2.className} font-medium text-header`}>Our Trusted Company</p>
                     <hr className='h-1 bg-secondary/50 w-1/6 rounded-lg' />
                 </div>

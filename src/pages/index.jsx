@@ -5,6 +5,14 @@ import Header from '@/components/Header';
 import Banner from '@/components/Banner';
 import TrustedCompany from '@/components/TrustedCompany';
 
+import { AiOutlineSecurityScan, AiOutlineFileSearch } from "react-icons/ai"
+import { SiAuth0 } from "react-icons/si"
+import { IoPricetagsOutline } from "react-icons/io5"
+import About1 from "@/assets/about-img1.png"
+import About2 from "@/assets/about-img2.png"
+
+import DefaultAvatar from "@/assets/default_profile_avatar.jpg"
+import Slider from "react-slick";
 
 
 import LatestJob from '@/components/LatestJob';
@@ -12,6 +20,10 @@ import LatestJob from '@/components/LatestJob';
 import axios from 'axios';
 import { URL_Domain } from '@/const/api_domain';
 import { useEffect } from 'react';
+import HowItWorks from '@/components/HowItWorks';
+import Feedback from '@/components/Feedback';
+import Know from '@/components/Know';
+import SubFoot from '@/components/SubFoot';
 
 
 
@@ -22,7 +34,7 @@ const workSans = Work_Sans({ subsets: ['latin'] })
 
 export default function Home() {
 
-//  
+
 
 
 
@@ -32,8 +44,16 @@ export default function Home() {
       <Header />
       <Banner />
       <TrustedCompany />
-
       <LatestJob />
+      <HowItWorks />
+      <Feedback />
+      <Know />
+      <SubFoot />
+
+
+
+
+
 
 
     </>
