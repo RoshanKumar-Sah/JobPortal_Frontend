@@ -5,10 +5,10 @@ import Link from "next/link"
 export default function Nav(){
    
     return<>
-    <ul className='gap-4 py-8 text-base flex flex-col  md:flex-row md:mt-0 md:py-0'>
-                        <li className="hover:text-primary-tint">HOME</li>
-                        <li className="hover:text-primary-tint">FIND JOBS</li>
-                        <li className="hover:text-primary-tint">CONTACT</li>
+    <ul className='gap-4 py-8 text-base flex flex-col  md:flex-row md:mt-0 md:py-0 select-none'>
+                        <li className="hover:text-primary-tint"><Link href={"/"}>HOME</Link></li>
+                        <li className="hover:text-primary-tint"><Link href={"/jobs"}>FIND JOBS</Link></li>
+                        <li className="hover:text-primary-tint"><Link href={"/contact"}>CONTACT</Link></li>
                     </ul>
                     <ul className='gap-4 flex flex-col md:flex-row'>
                         <li>

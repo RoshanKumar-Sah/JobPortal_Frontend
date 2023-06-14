@@ -11,8 +11,10 @@ const exo2 = Exo_2({ subsets: ['latin'] })
 const workSans = Work_Sans({ subsets: ['latin'] })
 
 
-export default function JobCard({job}){
-    let {title, number_of_vacancy, type, job_level, location, offered_salary, deadline, EmpName, category} = job;
+export default function JobCard({job, view}){
+    let {title, number_of_vacancy, type, job_level, location, offered_salary, deadline, EmpName, category, profile_image, cover_image} = job;
+
+    // console.log(view);
 
 const date = new Date(deadline)
 const options = { day: "2-digit", month: "long", year: "numeric" };
@@ -20,26 +22,37 @@ const deadline_formatted = date.toLocaleDateString("en-US", options);
 
 
     return<>
-      <div className='bg-white w-fit rounded-md hover:border hover:border-primary-dark'>
-              <div className='w-fit h-fit p-4 relative'>
-                <div className={`p-1 bg-white absolute right-6 top-6 rounded-md ${exo2.className} capitalize`}>
+      <div className={`bg-white  rounded-md hover:border hover:border-primary-dark ${view == "list" ? "flex relative w-full md:w-full items-center" : "w-full"}`}>
+              <div className={`${view != "list" ? "w-full h-2/5 p-4 relative" : ""}`}>
+                <div className={`p-1 bg-tertiary absolute right-6 top-6 rounded-md ${exo2.className} capitalize`}>
                   <p>{type[0]}</p>
                 </div>
-                <Image src={DefaultCover} className='w-full h-full rounded-md' alt='default_cover' />
+                {
+                  view != "list" ?
+                  
+                  cover_image ? <Image src={cover_image} height={200} width={200} className='w-full h-full object-fill rounded-md' alt='cover_image' /> :
+
+                   <Image src={DefaultCover} height={200} width={200} className='w-full h-full rounded-md' alt='default_cover' /> : ""
+                 }
+                
               </div>
-              <div className='p-4 flex gap-4'>
+              <div className={`${view != "list" ? "" : "w-1/2"} p-4 flex gap-4`} >
+              {
+                profile_image ? <Image src={profile_image} height={200} width={200} className='w-20 h-20 object-fill rounded-full' alt='profile_image' /> :
+              
                 <Image src={DefaultProfile} className='w-10 h-10 rounded-full' alt='default_profile' />
+              }
                 <div>
                   <h5 className={`text-lg font-semibold text-primary-dark ${exo2.className} capitalize`}>{title}</h5>
                   <p className={`${workSans.className}`}><span className='text-sm text-primary-tint font-normal capitalize'>{EmpName}</span> <span className='text-primary-dark font-medium'>| Deadline:</span> <span className='text-primary-tint text-sm font-normal'>{deadline_formatted}</span></p>
                 </div>
               </div>
               <div className='flex justify-center'>
-                <hr className='h-[1px] bg-primary-tint/10 w-11/12' />
+                <hr className={`${view != "list" ? "h-[1px] bg-primary-tint/10 w-11/12" : "h-40 bg-primary-tint/10 w-[2px]"}`} />
               </div>
 
 
-              <div className='p-4'>
+              <div className={`${view != "list" ? "" : "w-1/2"} p-4`}>
                 <ul className={`text-primary-tint font-medium text-base ${workSans.className}`}>
                 <li><span className={`${exo2.className}`}>Category:</span> <span className='text-primary-dark capitalize'>{category[0]}</span></li>
                   <li><span className={`${exo2.className}`}>Salary:</span> <span className='text-primary-dark'>Rs. {offered_salary}</span> <span className='font-normal'>/ Per Month</span></li>

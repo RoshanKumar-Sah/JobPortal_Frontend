@@ -4,6 +4,7 @@ import JobCard from "./JobCard";
 import { Exo_2 } from 'next/font/google'
 import axios from "axios";
 import { URL_Domain } from "@/const/api_domain";
+import Link from "next/link";
 const exo2 = Exo_2({ subsets: ['latin'] })
 
 export default function LatestJob() {
@@ -29,7 +30,7 @@ export default function LatestJob() {
                 <div className='container pt-28 pb-28'>
                     <h2 className={`text-5xl font-semibold text-header ${exo2.className} text-center`}>Latest Jobs</h2>
                     <div className="flex justify-end">
-                        <div className="bg-primary-dark text-white w-fit mt-14 rounded-md"><p className="py-3 px-5">Explore All Jobs</p></div>
+                       <Link href={"/jobs"}><div className="bg-primary-dark text-white w-fit mt-14 rounded-md border border-primary-dark hover:bg-white hover:text-primary-dark"><p className="py-3 px-5">Explore All Jobs</p></div></Link>
                     </div>
                     <div className="grid  mt-14 sm:grid-cols-2 md:grid-cols-3 justify-items-center gap-4">
 
