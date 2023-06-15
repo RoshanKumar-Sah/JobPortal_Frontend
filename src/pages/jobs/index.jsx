@@ -7,7 +7,7 @@ import axios from "axios";
 
 
 
-export default function Jobs({ jobs }) {
+export default function Jobs({ jobs, metadata }) {
 
     const router = useRouter()
     // console.log(router);
@@ -18,7 +18,7 @@ export default function Jobs({ jobs }) {
 
         <Header />
 
-        <JobListing jobs={...jobs} />
+        <JobListing jobs={...jobs} metadata={...metadata} />
 
 
         <Footer />
@@ -30,12 +30,22 @@ export default function Jobs({ jobs }) {
 
 export async function getServerSideProps(ctx) {
 
-    let url = `${URL_Domain}/jobs`
-    let res = await axios.get(url + "?per_page=83")
-    // console.log(ctx);
+    let url = `${URL_Domain}/jobs?`
+
+    // console.log(ctx.query);
+    let temp = Object.entries(ctx.query)
+    // console.log(temp);
+    temp.forEach(el => {
+        url += `${el[0]}=${el[1]}&`
+    })
+
+    // console.log(url);
+    let res = await axios.get(url)
+    
     // console.log(res.data[0].jobs);
     return {
         props: {
+            metadata: res.data[0].meta_data,
             jobs: res.data[0].jobs
         }
     }

@@ -12,7 +12,7 @@ const workSans = Work_Sans({ subsets: ['latin'] })
 
 
 export default function JobCard({job, view}){
-    let {title, number_of_vacancy, type, job_level, location, offered_salary, deadline, EmpName, category, profile_image, cover_image} = job;
+    let {_id, title, number_of_vacancy, type, job_level, location, offered_salary, deadline, EmpName, category, profile_image, cover_image} = job;
 
     // console.log(view);
 
@@ -64,7 +64,7 @@ const deadline_formatted = date.toLocaleDateString("en-US", options);
                     <p className={`py-1 px-3 ${exo2.className} capitalize`}>{job_level}</p>
                   </div>
                   <div className='w-fit  rounded-md mt-4 border border-primary-dark flex justify-center items-center group hover:bg-black hover:text-white'>
-                    <Link href={"#"} className={`py-1 px-3 ${exo2.className}`}>Browse Job <BsArrowBarRight className='inline-block' /></Link>
+                    <Link href={`/jobs/${_id}`} className={`py-1 px-3 ${exo2.className}`}>Browse Job <BsArrowBarRight className='inline-block' /></Link>
                   </div>
                 </div>
 
