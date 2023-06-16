@@ -108,6 +108,7 @@ export default function SingleJob({ job }) {
                 </div>
             </div>
             <div className="container pt-14 pb-28">
+            <h2 className={`text-lg font-semibold text-primary-dark ${exo2.className} mb-4`}>Job Description</h2>
                 <p>{description}</p>
             </div>
         </section>
@@ -119,11 +120,24 @@ export default function SingleJob({ job }) {
 
 export async function getServerSideProps(ctx) {
 
+    let job = null
+    try{
+
     let res = await axios.get(`${URL_Domain}/jobs/${ctx.query.slug}`)
+    job = res.data[0]
+    }catch(err){
+return{
+    notFound: true,
+    props:{
+
+    }
+}
+    }
+
 
     return {
         props: {
-            job: res.data[0]
+            job
         }
     }
 }

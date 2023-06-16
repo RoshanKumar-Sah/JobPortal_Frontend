@@ -13,7 +13,7 @@ export default function Nav(){
                     <ul className='gap-4 flex flex-col md:flex-row'>
                         <li>
                             <div className='flex justify-center items-center border border-black group hover:bg-primary-dark'>
-                                <Link href={"#"} className="py-2 px-7 group-hover:text-white"><BiUserCircle className="inline-block h-5 w-5 mr-1 mb-1" /> Job Seeker</Link></div>
+                                <Link href={"/candidates/login"} className="py-2 px-7 group-hover:text-white"><BiUserCircle className="inline-block h-5 w-5 mr-1 mb-1" /> Job Seeker</Link></div>
                         </li>
                         <li>
                             <div className='flex justify-center items-center border border-black bg-primary-dark group hover:bg-white'>

@@ -24,7 +24,7 @@ export default function HowItWorks() {
               </div>
               <div>
                 <p className={`${exo2.className} font-semibold text-xl text-header group-hover:text-secondary`}>Create Account</p>
-                <p>Create your account confidently.</p>
+                <p className={`${workSans.className} text-secondary`}>Create your account confidently.</p>
               </div>
             </div>
 
@@ -34,7 +34,7 @@ export default function HowItWorks() {
               </div>
               <div>
                 <p className={`${exo2.className} font-semibold text-xl text-header group-hover:text-secondary`}>Find Jobs</p>
-                <p>Find your dream job.</p>
+                <p className={`${workSans.className} text-secondary`}>Find your dream job.</p>
               </div>
             </div>
 
@@ -44,7 +44,7 @@ export default function HowItWorks() {
               </div>
               <div>
                 <p className={`${exo2.className} font-semibold text-xl text-header group-hover:text-secondary`}>Apply Jobs</p>
-                <p>Apply to your dream job.</p>
+                <p className={`${workSans.className} text-secondary`}>Apply to your dream job.</p>
               </div>
             </div>
           </div>

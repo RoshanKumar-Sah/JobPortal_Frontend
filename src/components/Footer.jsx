@@ -28,7 +28,7 @@ export default function Footer(){
           </ul>
         </div>
 
-        <div className='text-white flex flex-col items-center'>
+        <div className='text-white  flex flex-col items-center'>
           <h5 className={`${exo2.className} font-semibold text-xl mb-6`}>For Candidate&apos;s</h5>
           <ul className={`${workSans.className} font-medium text-base text-[#b3b3b3]`}>
           <li className='hover:text-white'><Link href={"/jobs"}>Browse Jobs</Link></li>
@@ -37,7 +37,7 @@ export default function Footer(){
           </ul>
         </div>
 
-        <div className='text-white flex flex-col items-center'>
+        <div className='text-white  flex flex-col items-center'>
           <h5 className={`${exo2.className} font-semibold text-xl mb-6`}>For Employer&apos;s</h5>
           <ul className={`${workSans.className} font-medium text-base text-[#b3b3b3]`}>
          <li className='hover:text-white'> <Link href={"/jobs"}>Browse Jobs</Link></li>
