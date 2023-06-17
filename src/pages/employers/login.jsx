@@ -16,7 +16,7 @@ const exo2 = Exo_2({ subsets: ['latin'] })
 const workSans = Work_Sans({ subsets: ['latin'] })
 
 
-export default function ClientLogin() {
+export default function EmployerLogin() {
 
     const dispatch = useDispatch()
     const router = useRouter()
@@ -50,7 +50,7 @@ export default function ClientLogin() {
         if (validation) {
             setSubmitting(true)
 
-            axios.post(`${URL_Domain}/loginClient`
+            axios.post(`${URL_Domain}/loginEmployer`
                 , {
                     email: email,
                     password: password
@@ -59,8 +59,8 @@ export default function ClientLogin() {
                 // console.log(res.data.temp);
                 // console.log(res.data.token);
                 setSubmitting(false)
-                let temp = {...res.data.temp, role: "client" }
-                localStorage.setItem("client_token", res.data.token)
+                let temp = {...res.data.temp, role: "employer" }
+                localStorage.setItem("employer_token", res.data.token)
                 // console.log(temp);
                 router.push(`/`)
 dispatch(setUser(temp))
@@ -88,7 +88,7 @@ dispatch(setUser(temp))
                 <div className="container pt-24 pb-24 flex flex-col items-center gap-20">
 
                     <div>
-                        <h2 className={`text-center font-bold ${exo2.className} text-3xl text-header  px-2`}>Log In As Job Seeker</h2>
+                        <h2 className={`text-center font-bold ${exo2.className} text-3xl text-header  px-2`}>Log In As Recruiter</h2>
                         <hr className="mt-2 border border-primary-dark" />
                     </div>
 
@@ -130,7 +130,7 @@ dispatch(setUser(temp))
                                 visible={true}
                             />}</button>
 
-                            <p className={`pt-6 ${workSans.className} font-medium text-lg text-primary-tint`}>Don't have an account? <Link href={"/candidates/signup"} className={`${exo2.className} text-primary-dark`}>Signup</Link></p>
+                            <p className={`pt-6 ${workSans.className} font-medium text-lg text-primary-tint`}>Don't have an account? <Link href={"/employers/signup"} className={`${exo2.className} text-primary-dark`}>Signup</Link></p>
                         </form>
                     </div>
                 </div>
