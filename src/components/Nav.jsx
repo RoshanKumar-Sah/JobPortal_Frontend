@@ -20,6 +20,20 @@ export default function Nav(){
                         <li className="hover:text-primary-tint"><Link href={"/"}>HOME</Link></li>
                         <li className="hover:text-primary-tint"><Link href={"/jobs"}>FIND JOBS</Link></li>
                         <li className="hover:text-primary-tint"><Link href={"/contact"}>CONTACT</Link></li>
+                        {
+                            logged_in?.role == "client" && <>
+                        
+                            <li className="hover:text-primary-tint"><Link href={"/candidates/appliedJobs"}>APPLIED JOBS</Link></li>
+                            </>
+                            
+                        }
+                        {
+                            logged_in?.role == "employer" &&<>
+                            <li className="hover:text-primary-tint">DASHBOARD</li>
+                            <li className="hover:text-primary-tint"><Link href={"/employers/jobs"}>MY JOBS</Link></li>
+                            <li className="hover:text-primary-tint"><Link href={"/employers/appliedCandidates"}>APPLIED CANDIDATES</Link></li>
+                            </> 
+                        }
                     </ul>
                     <ul className='gap-4 flex flex-col md:flex-row'>
                         
@@ -35,7 +49,7 @@ export default function Nav(){
                         </li>
                         </>
                         :<>
-                         <li className="flex items-center">{user.name}</li>
+                        <li className="flex items-center hover:text-primary-tint"><Link href={"/profile"}>{user.name}</Link></li>
                          <li>
                             <div className='flex justify-center items-center border border-black bg-primary-dark group hover:bg-white' onClick={()=>{
                                 dispatch(logout())
@@ -44,7 +58,7 @@ export default function Nav(){
                         </li>
                          </>
                         }
-                        
+                       
                         
                        
 

@@ -30,7 +30,7 @@ export default function Header() {
                         <Nav />
                     </div>}
 
-                    <div className="hidden md:flex items-center justify-between w-2/3"><Nav /></div>
+                    <div className="hidden md:flex md:gap-4 items-center justify-between w-2/3"><Nav /></div>
                 </div>
             </nav>
         </>

@@ -8,7 +8,10 @@ import DefaultProfile from "@/assets/default_profile_avatar.jpg"
 import DefaultCover from "@/assets/default_cover.jpg"
 import Image from "next/image";
 import { Exo_2, Work_Sans } from 'next/font/google'
+import { TailSpin } from 'react-loader-spinner';
+import { ToastContainer, toast } from 'react-toastify';
 import Footer from "@/components/Footer";
+
 
 const exo2 = Exo_2({ subsets: ['latin'] })
 const workSans = Work_Sans({ subsets: ['latin'] })
@@ -27,6 +30,8 @@ export default function SingleJob({ job }) {
     const createdAtDate = new Date(createdAt)
     const createdAt_formatted = createdAtDate.toLocaleDateString("en-US", options);
 
+    let [submitting, setSubmitting] = useState(false)
+
     // const router = useRouter()
 
     // const [job, setJob] = useState({})
@@ -42,6 +47,45 @@ export default function SingleJob({ job }) {
     //     })
 
     // },[])
+
+
+
+    function handleClick() {
+        // console.log("apply");
+
+        if (localStorage.getItem("client_token")) {
+            setSubmitting(true)
+            axios.post(`${URL_Domain}/apply_job/${_id}`, {}, {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem("client_token")
+                }
+            }).then(res => {
+                // console.log(res.data);
+
+                if (res.data?.msg) {
+                    toast.error(res.data.msg, {
+                        position: toast.POSITION.TOP_RIGHT
+                    });
+                }
+
+                if (res.data?.job) {
+                    toast.success("Applied", {
+                        position: toast.POSITION.TOP_RIGHT
+                    });
+                }
+
+
+
+                setSubmitting(false)
+            }).catch(err => {
+                // console.log(err);
+                setSubmitting(false)
+            })
+
+        }
+
+    }
+
     return <>
         <Header />
 
@@ -97,8 +141,17 @@ export default function SingleJob({ job }) {
 
 
                         <div className="flex justify-center items-center">
-                            <button type="button" className='flex w-fit h-fit py-2 px-7 justify-center items-center border border-black bg-primary-dark group hover:bg-white text-white hover:text-primary-dark'>
-                                Apply Now
+                            <button type="button" onClick={handleClick} disabled={submitting} className='disabled:bg-black/70 flex gap-2 w-fit h-fit py-2 px-7 justify-center items-center border border-black bg-primary-dark group hover:bg-white text-white hover:text-primary-dark'>
+                                Apply Now {submitting && <TailSpin
+                                    height="20"
+                                    width="20"
+                                    color="#ffffff"
+                                    ariaLabel="tail-spin-loading"
+                                    radius="1"
+                                    wrapperStyle={{}}
+                                    wrapperClass=""
+                                    visible={true}
+                                />}
                             </button>
                         </div>
                     </div>
@@ -108,12 +161,13 @@ export default function SingleJob({ job }) {
                 </div>
             </div>
             <div className="container pt-14 pb-28">
-            <h2 className={`text-lg font-semibold text-primary-dark ${exo2.className} mb-4`}>Job Description</h2>
+                <h2 className={`text-lg font-semibold text-primary-dark ${exo2.className} mb-4`}>Job Description</h2>
                 <p>{description}</p>
             </div>
         </section>
 
         <Footer />
+        <ToastContainer />
     </>
 }
 
@@ -121,17 +175,17 @@ export default function SingleJob({ job }) {
 export async function getServerSideProps(ctx) {
 
     let job = null
-    try{
+    try {
 
-    let res = await axios.get(`${URL_Domain}/jobs/${ctx.query.slug}`)
-    job = res.data[0]
-    }catch(err){
-return{
-    notFound: true,
-    props:{
+        let res = await axios.get(`${URL_Domain}/jobs/${ctx.query.slug}`)
+        job = res.data[0]
+    } catch (err) {
+        return {
+            notFound: true,
+            props: {
 
-    }
-}
+            }
+        }
     }
 
 
