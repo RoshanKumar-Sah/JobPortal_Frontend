@@ -9,7 +9,7 @@ import { Provider, useDispatch } from 'react-redux'
 import { useEffect } from 'react';
 import axios from 'axios';
 import { URL_Domain } from '@/const/api_domain';
-import { setUser } from '@/redux/slice/userSlice';
+import { setUser, stopLoading } from '@/redux/slice/userSlice';
 
 
 
@@ -32,9 +32,7 @@ useEffect(()=>{
       }).catch(err =>{
         // console.log(err);
       })
-    }
-
-    if(localStorage.getItem("employer_token")){
+    }else if(localStorage.getItem("employer_token")){
       axios.get("http://localhost:8000/api/getEmployer", {
         headers:{
           Authorization: "Bearer "+localStorage.getItem("employer_token") 
@@ -45,6 +43,8 @@ useEffect(()=>{
       }).catch(err =>{
         // console.log(err);
       })
+    }else{
+      dispatch(stopLoading())
     }
   
   

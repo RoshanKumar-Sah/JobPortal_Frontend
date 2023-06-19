@@ -4,12 +4,13 @@ import { Exo_2, Work_Sans } from 'next/font/google'
 import Image from "next/image";
 import DefaultAvatar from "@/assets/default_profile_avatar.jpg"
 import Footer from "@/components/Footer";
+import ProtectedPage from "@/components/ProtectedPage";
 
 const exo2 = Exo_2({ subsets: ['latin'] })
 const workSans = Work_Sans({ subsets: ['latin'] })
 
 
-export default function Profile() {
+function Profile() {
 
     let user = useSelector((redux_store) => {
         return redux_store.user.value
@@ -50,3 +51,6 @@ export default function Profile() {
         <Footer />
     </>
 }
+
+
+export default ProtectedPage(Profile)

@@ -5,11 +5,12 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Exo_2, Work_Sans } from 'next/font/google'
 import Footer from "@/components/Footer";
+import ProtectedPage from "@/components/ProtectedPage";
 
 const exo2 = Exo_2({ subsets: ['latin'] })
 const workSans = Work_Sans({ subsets: ['latin'] })
 
-export default function AppliedJobs() {
+function AppliedJobs() {
 
 
     let [appliedJobs, setAppliedJobs] = useState([])
@@ -40,8 +41,7 @@ export default function AppliedJobs() {
                 <div className="container flex justify-center py-28">
 
 
-                    <div className="flex flex-col gap-4 bg-white py-8 px-8 md:w-2/4 items-center">
-                    <h2 className={`text-lg font-semibold text-primary-dark ${exo2.className}`}>Total Applied Jobs : {appliedJobs.length}</h2>
+                    <div className="flex  flex-col-reverse gap-4 bg-white py-8 px-8 md:w-2/4 items-center">
                         {
                             appliedJobs.map(el => {
                                 let deadline_date = new Date(el.deadline)
@@ -78,6 +78,8 @@ export default function AppliedJobs() {
 
                             })
                         }
+                                            <h2 className={`text-lg font-semibold text-primary-dark ${exo2.className}`}>Total Applied Jobs : {appliedJobs.length}</h2>
+
                     </div>
                 </div>
             </div>
@@ -85,3 +87,6 @@ export default function AppliedJobs() {
         <Footer />
     </>
 }
+
+
+export default ProtectedPage(AppliedJobs, "client")

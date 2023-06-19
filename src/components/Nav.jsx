@@ -30,7 +30,7 @@ export default function Nav(){
                         {
                             logged_in?.role == "employer" &&<>
                             <li className="hover:text-primary-tint">DASHBOARD</li>
-                            <li className="hover:text-primary-tint"><Link href={"/employers/jobs"}>MY JOBS</Link></li>
+                            <li className="hover:text-primary-tint"><Link href={"/employers/myJobs"}>MY JOBS</Link></li>
                             <li className="hover:text-primary-tint"><Link href={"/employers/appliedCandidates"}>APPLIED CANDIDATES</Link></li>
                             </> 
                         }

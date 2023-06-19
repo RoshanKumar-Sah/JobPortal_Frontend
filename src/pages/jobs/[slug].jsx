@@ -11,6 +11,7 @@ import { Exo_2, Work_Sans } from 'next/font/google'
 import { TailSpin } from 'react-loader-spinner';
 import { ToastContainer, toast } from 'react-toastify';
 import Footer from "@/components/Footer";
+import { useSelector } from "react-redux";
 
 
 const exo2 = Exo_2({ subsets: ['latin'] })
@@ -18,6 +19,13 @@ const workSans = Work_Sans({ subsets: ['latin'] })
 
 
 export default function SingleJob({ job }) {
+
+
+    let user = useSelector((redux_store) => {
+        return redux_store.user.value
+    })
+
+    // console.log(user);
 
     // console.log(job);
 
@@ -82,6 +90,10 @@ export default function SingleJob({ job }) {
                 setSubmitting(false)
             })
 
+        }else{
+            toast.error("Login to Apply", {
+                position: toast.POSITION.TOP_RIGHT
+            });
         }
 
     }
@@ -141,18 +153,37 @@ export default function SingleJob({ job }) {
 
 
                         <div className="flex justify-center items-center">
-                            <button type="button" onClick={handleClick} disabled={submitting} className='disabled:bg-black/70 flex gap-2 w-fit h-fit py-2 px-7 justify-center items-center border border-black bg-primary-dark group hover:bg-white text-white hover:text-primary-dark'>
-                                Apply Now {submitting && <TailSpin
-                                    height="20"
-                                    width="20"
-                                    color="#ffffff"
-                                    ariaLabel="tail-spin-loading"
-                                    radius="1"
-                                    wrapperStyle={{}}
-                                    wrapperClass=""
-                                    visible={true}
-                                />}
-                            </button>
+
+                            {
+                                user?.role != "employer" ? <button type="button" onClick={handleClick} disabled={submitting} className='disabled:bg-black/70 flex gap-2 w-fit h-fit py-2 px-7 justify-center items-center border border-black bg-primary-dark group hover:bg-white text-white hover:text-primary-dark'>
+                                    Apply Now {submitting && <TailSpin
+                                        height="20"
+                                        width="20"
+                                        color="#ffffff"
+                                        ariaLabel="tail-spin-loading"
+                                        radius="1"
+                                        wrapperStyle={{}}
+                                        wrapperClass=""
+                                        visible={true}
+                                    />}
+                                </button>
+                                    :
+                                    <button type="button" disabled={submitting} className='disabled:bg-black/70 flex gap-2 w-fit h-fit py-2 px-7 justify-center items-center border border-black bg-primary-dark group hover:bg-white text-white hover:text-primary-dark'>
+                                        Edit {submitting && <TailSpin
+                                            height="20"
+                                            width="20"
+                                            color="#ffffff"
+                                            ariaLabel="tail-spin-loading"
+                                            radius="1"
+                                            wrapperStyle={{}}
+                                            wrapperClass=""
+                                            visible={true}
+                                        />}
+                                    </button>
+
+                            }
+
+
                         </div>
                     </div>
 
