@@ -4,8 +4,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import JobListing from "@/components/JobListing";
 import Footer from "@/components/Footer";
+import ProtectedPage from "@/components/ProtectedPage";
 
-export default function EmployerJobs(){
+function EmployerJobs(){
 
 let[jobs, setJobs] = useState([])
 let[metadata, setMetadata] = useState([])
@@ -37,3 +38,6 @@ return<>
     <Footer />
     </>
 }
+
+
+export default ProtectedPage(EmployerJobs, "employer")

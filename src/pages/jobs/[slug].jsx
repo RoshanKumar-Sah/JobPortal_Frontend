@@ -103,7 +103,7 @@ export default function SingleJob({ job }) {
 
         <section>
             <div className="bg-tertiary">
-                <div className="container mt-28 pt-14 pb-14">
+                <div className="container  pt-28 pb-14">
                     <div className="grid md:grid-cols-4 gap-8 justify-center">
 
                         <div className="relative border border-primary-tint/50 rounded-md">
@@ -188,13 +188,15 @@ export default function SingleJob({ job }) {
                     </div>
 
 
-
+<hr className="h-1 w-full bg-black/50 mt-4"/>
                 </div>
-            </div>
-            <div className="container pt-14 pb-28">
+                <div className="container pt-14 pb-28">
                 <h2 className={`text-lg font-semibold text-primary-dark ${exo2.className} mb-4`}>Job Description</h2>
-                <p>{description}</p>
+                <div dangerouslySetInnerHTML={{ __html: description }}>
+               </div>
             </div>
+            </div>
+            
         </section>
 
         <Footer />

@@ -8,12 +8,13 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import { TailSpin } from 'react-loader-spinner';
+import ProtectedPageLoginSignup from "@/components/ProtectedPageLoginSignup";
 
 const exo2 = Exo_2({ subsets: ['latin'] })
 const workSans = Work_Sans({ subsets: ['latin'] })
 
 
-export default function EmployerSignup() {
+function EmployerSignup() {
 
     const router = useRouter()
 
@@ -208,3 +209,7 @@ export default function EmployerSignup() {
         <ToastContainer />
     </>
 }
+
+
+export default ProtectedPageLoginSignup(EmployerSignup)
+

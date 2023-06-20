@@ -10,13 +10,14 @@ import { TailSpin } from 'react-loader-spinner';
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { setUser } from "@/redux/slice/userSlice";
+import ProtectedPageLoginSignup from "@/components/ProtectedPageLoginSignup";
 
 
 const exo2 = Exo_2({ subsets: ['latin'] })
 const workSans = Work_Sans({ subsets: ['latin'] })
 
 
-export default function ClientLogin() {
+function ClientLogin() {
 
     const dispatch = useDispatch()
     const router = useRouter()
@@ -142,3 +143,6 @@ dispatch(setUser(temp))
 
     </>
 }
+
+
+export default ProtectedPageLoginSignup(ClientLogin)

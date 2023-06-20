@@ -10,6 +10,8 @@ import { AiOutlineSearch } from "react-icons/ai"
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import Link from 'next/link';
+import ProtectedComponent from './ProtectedComponent';
+import { EMPLOYER } from "@/const/role"
 
 const exo2 = Exo_2({ subsets: ['latin'] })
 const workSans = Work_Sans({ subsets: ['latin'] })
@@ -19,7 +21,7 @@ export default function JobComponent({ jobs, metadata }) {
 
     let user = useSelector((redux_store) => {
         return redux_store.user.value
-      })
+    })
 
 
     const [cardView, setCardView] = useState("grid")
@@ -87,12 +89,16 @@ export default function JobComponent({ jobs, metadata }) {
                     {/* <form onSubmit={handleSubmit} className='flex justify-center mb-4' >
                         
                     </form> */}
-                    <div className='flex justify-center my-8 w-fit items-center border border-black bg-primary-dark group hover:bg-white'>
-                                <Link href={"#"} className="py-2 px-7 text-white group-hover:text-primary-dark">Post Job
-                                </Link>
-                                </div>
+
+                    <ProtectedComponent role={EMPLOYER}>
+                        <div className='flex justify-center my-8 w-fit items-center border border-black bg-primary-dark group hover:bg-white'>
+                            <Link href={"/employers/myJobs/postJob"} className="py-2 px-7 text-white group-hover:text-primary-dark">Post Job
+                            </Link>
+                        </div>
+                    </ProtectedComponent>
+
                     <div className="flex justify-between flex-wrap">
-                   
+
                         <p className={`${workSans.className} font-medium text-base text-secondary`}>Showing results in {metadata[0]?.total} job list</p>
                         <div>
 
