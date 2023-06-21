@@ -108,16 +108,16 @@ export default function SingleJob({ job }) {
 
                         <div className="relative border border-primary-tint/50 rounded-md">
                             <div className="w-full h-full p-4">
-                                {cover_image ? <Image src={cover_image} height={200} width={200} className='w-full h-full object-fill rounded-md' alt='cover_image' /> :
+                                {cover_image ? <Image src={cover_image} height={200} width={200} className='w-full h-full  rounded-md' alt='cover_image' /> :
 
-                                    <Image src={DefaultCover} height={200} width={200} className='w-full h-full object-cover rounded-md' alt='default_cover' />
+                                    <Image src={DefaultCover} height={200} width={200} className='w-full h-full rounded-md object-fill' alt='default_cover' />
                                 }
                             </div>
                             <div className="w-28 h-28 absolute bottom-0 left-0">
                                 {
-                                    profile_image ? <Image src={profile_image} height={200} width={200} className='w-full h-full object-fill rounded-full' alt='profile_image' /> :
+                                    profile_image ? <Image src={profile_image} height={200} width={200} className='w-full h-full  rounded-full' alt='profile_image' /> :
 
-                                        <Image src={DefaultProfile} className='w-full h-full rounded-full' alt='default_profile' />
+                                        <Image src={DefaultProfile} className='w-full h-full rounded-full object-fill' alt='default_profile' />
                                 }
                             </div>
                         </div>

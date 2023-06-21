@@ -8,6 +8,9 @@ import DefaultCover from "@/assets/default_cover.jpg"
 import { BsArrowBarRight } from "react-icons/bs"
 import {AiOutlineEdit} from "react-icons/ai"
 import { useSelector } from 'react-redux';
+import ProtectedComponent from './ProtectedComponent';
+import { EMPLOYER } from '@/const/role';
+import { URL_Domain } from '@/const/api_domain';
 
 const exo2 = Exo_2({ subsets: ['latin'] })
 const workSans = Work_Sans({ subsets: ['latin'] })
@@ -74,12 +77,14 @@ export default function JobCard({ job, view }) {
           <div className='w-fit  rounded-md mt-4 border border-primary-dark flex justify-center items-center group hover:bg-black hover:text-white'>
             <Link href={`/jobs/${_id}`} className={`py-1 px-3 ${exo2.className}`}>Browse Job <BsArrowBarRight className='inline-block' /></Link>
           </div>
-          {
-            user?.role == "employer" && <div className='w-fit  rounded-md mt-4 border border-primary-dark flex justify-center items-center group hover:bg-black hover:text-white'>
-              <Link href={`#`} className={`py-1 px-3 ${exo2.className}`}>Edit <AiOutlineEdit className='inline-block' /></Link>
-            </div>
-          }
+         
 
+<ProtectedComponent role={EMPLOYER}>
+<div className='w-fit  rounded-md mt-4 border border-primary-dark flex justify-center items-center group hover:bg-black hover:text-white'>
+              <Link href={`/employers/myJobs/edit/${_id}`} className={`py-1 px-3 ${exo2.className}`}>Edit <AiOutlineEdit className='inline-block' /></Link>
+            </div>
+           
+</ProtectedComponent>
         </div>
 
       </div>

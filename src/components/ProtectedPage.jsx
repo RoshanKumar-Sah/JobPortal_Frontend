@@ -8,7 +8,7 @@ export default function ProtectedPage(PageComponent, role) {
 
 
 
-    function Wrapper() {
+    function Wrapper(props) {
 
         let router = useRouter()
 
@@ -44,8 +44,15 @@ export default function ProtectedPage(PageComponent, role) {
             return <><p>Forbidden</p></>
         }
          else {
+
+            // console.log(role);
+            // console.log(router);
+            // console.log(PageComponent );
+
+
             return <>
-                <PageComponent />
+
+                <PageComponent {...props}/>
             </>
         }
     }

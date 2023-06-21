@@ -141,9 +141,9 @@ export default function JobComponent({ jobs, metadata }) {
 
                     </div>
 
-                    <div className="flex flex-col gap-40 md:flex-row">
+                    <div className={`flex flex-col gap-40 md:flex-row `}>
 
-                        <div className="mt-28">
+                        {/* <div className="mt-28">
                             <h2>Category</h2>
                             <form className="mt-4">
                                 <div>
@@ -162,15 +162,11 @@ export default function JobComponent({ jobs, metadata }) {
                                     <input type="checkbox" /><label> UI/UX Designer</label>
                                 </div>
 
-
-
-
-
                             </form>
-                        </div>
+                        </div> */}
 
 
-                        <div className={`grid ${cardView != "grid" ? 'grid-cols-1' : 'sm:grid-cols-2 md:grid-cols-2'}   gap-4 mt-28`}>
+                        <div className={`grid ${cardView != "grid" ? 'grid-cols-1 w-full' : 'sm:grid-cols-2 md:grid-cols-3'}   gap-4 mt-28`}>
 
                             {
                                 jobs.map(job => {
