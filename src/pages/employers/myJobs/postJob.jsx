@@ -169,7 +169,7 @@ function Upsert({ job }) {
             form_data.append("deadline", data.deadline)
 
 
-            console.log(data.profile_image);
+            // console.log(data.profile_image);
 
             if (stringProfile) {
                 // if(typeof(profile_image) == "object"){
@@ -223,11 +223,11 @@ function Upsert({ job }) {
                     }
 
                 }).then(res => {
-                    console.log(res);
+                    // console.log(res);
                     setSubmitting(false)
                     router.push(`/jobs/${data._id}`)
                 }).catch(err => {
-                    console.log(err);
+                    // console.log(err);
                     setSubmitting(false)
                     toast.error(err.response.data.msg, {
                         position: toast.POSITION.TOP_RIGHT
@@ -241,14 +241,14 @@ function Upsert({ job }) {
                     Authorization: "Bearer " + localStorage.getItem("employer_token")
                 }
             }).then(res => {
-                console.log(res);
+                // console.log(res);
                 toast.success("Job Posted", {
                     position: toast.POSITION.TOP_RIGHT
                 });
                 setSubmitting(false)
             }).catch(err => {
-                console.log(err.response.data.msg);
-                console.log(err.response.data.errors);
+                // console.log(err.response.data.msg);
+                // console.log(err.response.data.errors);
                 if (err.response.data.errors && err.response.data.errors.length) {
                     err.response.data.errors.forEach(el => {
                         toast.error(el.message, {

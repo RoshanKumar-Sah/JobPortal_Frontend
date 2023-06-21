@@ -3,8 +3,8 @@ import Upsert from "../postJob";
 import { useEffect, useState } from "react";
 import { URL_Domain } from "@/const/api_domain";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { setjob, stopJobLoading } from "@/redux/slice/jobSlice";
+
+
 import ProtectedPage from "@/components/ProtectedPage";
 
 
