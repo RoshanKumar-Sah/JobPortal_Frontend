@@ -47,9 +47,9 @@ export default function JobCard({ job, view }) {
         }
 
       </div>
-      <div className={`${view != "list" ? "" : "w-1/2"} p-4 flex gap-4`} >
+      <div className={`${view != "list" ? "" : "w-1/2"} p-4  flex gap-4`} >
         {
-          profile_image ? <Image src={profile_image} height={200} width={200} className='w-20 h-20 object-fill rounded-full' alt='profile_image' /> :
+          profile_image ? <Image src={profile_image} height={200} width={200} className='w-10 h-10 sm:w-20 sm:h-20 object-fill rounded-full' alt='profile_image' /> :
 
             <Image src={DefaultProfile} className='w-10 h-10 rounded-full' alt='default_profile' />
         }
@@ -70,8 +70,8 @@ export default function JobCard({ job, view }) {
           <li><span className={`${exo2.className}`}>Location:</span> <span className='text-primary-dark capitalize'>{location}</span></li>
           <li><span className={`${exo2.className}`}>Vacancy:</span> <span className='text-primary-dark'>{number_of_vacancy}</span></li>
         </ul>
-        <div className='flex justify-between'>
-          <div className='bg-primary-dark text-white w-fit  rounded-md mt-4'>
+        <div className={`${view == "list" ? "block" : "flex justify-between"} `}>
+          <div className={`bg-primary-dark text-white w-fit  rounded-md mt-4`}>
             <p className={`py-1 px-3 ${exo2.className} capitalize`}>{job_level}</p>
           </div>
           <div className='w-fit  rounded-md mt-4 border border-primary-dark flex justify-center items-center group hover:bg-black hover:text-white'>
