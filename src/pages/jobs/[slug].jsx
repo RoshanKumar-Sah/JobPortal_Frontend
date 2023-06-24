@@ -201,11 +201,12 @@ export default function SingleJob({ job }) {
                                 </button>
                                     :
                                     <button type="button"  disabled={submitting} onClick={()=>{
-                                        setSubmitting(true)
+                                       
                                         router.push(`/employers/myJobs/edit/${router.query.slug}`)
-                                        setSubmitting(false)
+                                        
                                     }} className='disabled:bg-black/70 flex gap-2 w-fit h-fit py-2 px-7 justify-center items-center border border-black bg-primary-dark group hover:bg-white text-white hover:text-primary-dark'>
-                                     <AiOutlineEdit className='inline-block' />   Edit {submitting && <TailSpin
+                                     <AiOutlineEdit className='inline-block' />   Edit
+                                      {/* {submitting && <TailSpin
                                             height="20"
                                             width="20"
                                             color="#ffffff"
@@ -214,7 +215,7 @@ export default function SingleJob({ job }) {
                                             wrapperStyle={{}}
                                             wrapperClass=""
                                             visible={true}
-                                        />}
+                                        />} */}
                                     </button>
 
                             }
