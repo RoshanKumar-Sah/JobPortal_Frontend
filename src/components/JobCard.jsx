@@ -6,7 +6,7 @@ import Link from 'next/link';
 import DefaultProfile from "@/assets/default_profile_avatar.jpg"
 import DefaultCover from "@/assets/default_cover.jpg"
 import { BsArrowBarRight } from "react-icons/bs"
-import {AiOutlineEdit} from "react-icons/ai"
+import { AiOutlineEdit } from "react-icons/ai"
 import { useSelector } from 'react-redux';
 import ProtectedComponent from './ProtectedComponent';
 import { EMPLOYER } from '@/const/role';
@@ -77,14 +77,14 @@ export default function JobCard({ job, view }) {
           <div className='w-fit  rounded-md mt-4 border border-primary-dark flex justify-center items-center group hover:bg-black hover:text-white'>
             <Link href={`/jobs/${_id}`} className={`py-1 px-3 ${exo2.className}`}>Browse Job <BsArrowBarRight className='inline-block' /></Link>
           </div>
-         
 
-<ProtectedComponent role={EMPLOYER}>
-<div className='w-fit  rounded-md mt-4 border border-primary-dark flex justify-center items-center group hover:bg-black hover:text-white'>
+
+          <ProtectedComponent role={EMPLOYER}>
+            <div className='w-fit  rounded-md mt-4 border border-primary-dark flex justify-center items-center group hover:bg-black hover:text-white'>
               <Link href={`/employers/myJobs/edit/${_id}`} className={`py-1 px-3 ${exo2.className}`}>Edit <AiOutlineEdit className='inline-block' /></Link>
             </div>
-           
-</ProtectedComponent>
+
+          </ProtectedComponent>
         </div>
 
       </div>

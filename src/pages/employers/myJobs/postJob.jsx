@@ -12,6 +12,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import { useSelector } from "react-redux";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { AiFillCloseCircle } from "react-icons/ai"
+import Footer from "@/components/Footer";
 
 const exo2 = Exo_2({ subsets: ['latin'] })
 const workSans = Work_Sans({ subsets: ['latin'] })
@@ -407,10 +409,17 @@ function Upsert({ job }) {
                             {
                                 typeof (data.profile_image) == "string" ? <div className="relative">
                                     <Image src={data.profile_image} alt="profile_image" height={200} width={200} className="aspect_square" />
-                                    <span className="bg-red-200 text-3xl text-red-500 absolute top-0" onClick={() => {
+                                    {/* <span className="bg-red-200 text-3xl text-red-500 absolute top-0" onClick={() => {
                                         setData({ ...data, profile_image: "" })
                                         setStringProfile(false)
-                                    }}>X</span>
+                                    }}>X</span> */}
+
+                                    <div className="absolute top-0" onClick={() => {
+                                        setData({ ...data, profile_image: "" })
+                                        setStringProfile(false)
+                                    }}>
+                                        <AiFillCloseCircle className="h-12 w-12 text-red-500" />
+                                    </div>
                                 </div>
                                     :
                                     <div className="w-full">
@@ -421,10 +430,17 @@ function Upsert({ job }) {
                             {
                                 typeof (data.cover_image) == "string" ? <div className="relative">
                                     <Image src={data.cover_image} alt="cover_image" height={200} width={200} className="aspect-square" />
-                                    <span className="bg-red-200 text-3xl text-red-500 absolute top-0" onClick={() => {
+                                    {/* <span className="bg-red-200 text-3xl text-red-500 absolute top-0" onClick={() => {
                                         setData({ ...data, cover_image: "" })
                                         setStringCover(false)
-                                    }}>X</span>
+                                    }}>X</span> */}
+
+                                    <div className="absolute top-0" onClick={() => {
+                                        setData({ ...data, cover_image: "" })
+                                        setStringCover(false)
+                                    }}>
+                                        <AiFillCloseCircle className="h-12 w-12 text-red-500" />
+                                    </div>
                                 </div>
                                     :
                                     <div className="w-full">
@@ -466,6 +482,8 @@ function Upsert({ job }) {
                 </div>
             </div>
         </section>
+
+        <Footer />
         <ToastContainer />
     </>
 }

@@ -20,7 +20,7 @@ export default function LatestJob() {
                 setJob(res.data[0].jobs)
             }
         ).catch(err => {
-            console.log(err);
+            // console.log(err);
         })
     }, [])
 
@@ -30,7 +30,7 @@ export default function LatestJob() {
                 <div className='container pt-28 pb-28'>
                     <h2 className={`text-5xl font-semibold text-header ${exo2.className} text-center`}>Latest Jobs</h2>
                     <div className="flex justify-end">
-                       <Link href={"/jobs"}><div className="bg-primary-dark text-white w-fit mt-14 rounded-md border border-primary-dark hover:bg-white hover:text-primary-dark"><p className="py-3 px-5">Explore All Jobs</p></div></Link>
+                        <Link href={"/jobs"}><div className="bg-primary-dark text-white w-fit mt-14 rounded-md border border-primary-dark hover:bg-white hover:text-primary-dark"><p className="py-3 px-5">Explore All Jobs</p></div></Link>
                     </div>
                     <div className="grid  mt-14 sm:grid-cols-2 md:grid-cols-3 justify-items-center gap-4">
 

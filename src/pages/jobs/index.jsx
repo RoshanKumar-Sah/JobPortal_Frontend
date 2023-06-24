@@ -41,7 +41,7 @@ export async function getServerSideProps(ctx) {
 
     // console.log(url);
     let res = await axios.get(url)
-    
+
     // console.log(res.data[0].jobs);
     return {
         props: {

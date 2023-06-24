@@ -57,7 +57,7 @@ function AppliedCandidates() {
 
                                         <div className="flex items-center gap-4">
 
-                                            <div className="w-full">
+                                            <div className="w-full px-4">
                                                 <h2 className={`text-lg font-semibold text-primary-dark ${exo2.className} capitalize`}>Applicant: {el.applicantName}</h2>
                                                 <ul className={`text-primary-tint font-medium text-base ${workSans.className}`}>
 
@@ -86,6 +86,8 @@ function AppliedCandidates() {
                 </div>
             </div>
         </section>
+
+        <Footer />
 
     </>
 }

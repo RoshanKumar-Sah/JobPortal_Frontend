@@ -1,6 +1,6 @@
 import Slider from "react-slick";
 import Image from 'next/image'
-import { Exo_2} from 'next/font/google'
+import { Exo_2 } from 'next/font/google'
 import Trusted_01 from "@/assets/trusted-company-01.svg"
 import Trusted_02 from "@/assets/trusted-company-02.svg"
 import Trusted_03 from "@/assets/trusted-company-03.svg"

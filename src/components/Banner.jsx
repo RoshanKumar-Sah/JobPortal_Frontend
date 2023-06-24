@@ -17,7 +17,7 @@ export default function Banner() {
   function handleSearch(event) {
     event.preventDefault()
     // console.log(router);
-    router.push("/jobs?search_term=" +event.target.search_term.value)
+    router.push("/jobs?search_term=" + event.target.search_term.value)
   }
 
   return <>
@@ -57,7 +57,7 @@ export default function Banner() {
                   <option>Full Stack</option>
                   <option>UI/UX</option>
                 </select> */}
-                <button type='submit'  className='flex justify-center items-center border border-black bg-primary-dark text-white hover:bg-white hover:text-primary-dark px-10 py-3 w-fit  rounded-full md:px-12'>Search</button>
+                <button type='submit' className='flex justify-center items-center border border-black bg-primary-dark text-white hover:bg-white hover:text-primary-dark px-10 py-3 w-fit  rounded-full md:px-12'>Search</button>
               </form>
             </div>
           </div>

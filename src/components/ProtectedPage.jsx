@@ -41,7 +41,7 @@ export default function ProtectedPage(PageComponent, role) {
 
         } 
         else if (role && user.role !== role) {
-            return <><p>Forbidden</p></>
+            router.push("/forbidden")
         }
          else {
 

@@ -7,18 +7,18 @@ export const userSlice = createSlice({
     value: null
   },
   reducers: {
-   "setUser" : (state, action)=>{
-state.value = action.payload
-state.isLoading = false
-   },
-   "logout" : (state)=>{
-    state.value = null
-    localStorage.removeItem("client_token")
-    localStorage.removeItem("employer_token")
-   },
-   "stopLoading":(state)=>{
-    state.isLoading = false
-}
+    "setUser": (state, action) => {
+      state.value = action.payload
+      state.isLoading = false
+    },
+    "logout": (state) => {
+      state.value = null
+      localStorage.removeItem("client_token")
+      localStorage.removeItem("employer_token")
+    },
+    "stopLoading": (state) => {
+      state.isLoading = false
+    }
   }
 })
 

@@ -8,7 +8,7 @@ import { Exo_2, Work_Sans } from 'next/font/google'
 const exo2 = Exo_2({ subsets: ['latin'] })
 const workSans = Work_Sans({ subsets: ['latin'] })
 
-export default function NotFound() {
+export default function Forbidden() {
     return <>
         <Header />
 
@@ -18,10 +18,11 @@ export default function NotFound() {
 
 
                 <div>
-                    <Image src={NotFoundImage} alt="404Error" />
+                    {/* <Image src={NotFoundImage} /> */}
                 </div>
                 <div className={`text-center ${workSans.className}`}>
-                    <h2 className={`font-medium text-4xl mb-5 text-header`}>Opps... Page Not Found</h2>
+                    <h1 className={`font-bold text-8xl mb-5 text-header`}>403</h1>
+                    <h2 className={`font-medium text-4xl mb-5 text-header`}>Forbidden</h2>
                     <p className="font-normal text-xl text-secondary">Something went wrong, the page you're looking for doesn't seem to exist</p>
                 </div>
                 <div className='flex w-fit h-fit justify-center items-center border border-black bg-primary-dark group hover:bg-white mt-5'>

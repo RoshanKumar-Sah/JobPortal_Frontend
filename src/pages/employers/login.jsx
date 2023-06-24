@@ -60,11 +60,11 @@ function EmployerLogin() {
                 // console.log(res.data.temp);
                 // console.log(res.data.token);
                 setSubmitting(false)
-                let temp = {...res.data.temp, role: "employer" }
+                let temp = { ...res.data.temp, role: "employer" }
                 localStorage.setItem("employer_token", res.data.token)
                 // console.log(temp);
                 router.push(`/`)
-dispatch(setUser(temp))
+                dispatch(setUser(temp))
 
             }).catch(err => {
                 console.log(err.response.data.msg);

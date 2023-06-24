@@ -6,7 +6,8 @@ import JobCard from "@/components/JobCard";
 import { useEffect, useState } from "react";
 
 import { BsGridFill, BsList } from "react-icons/bs"
-import { AiOutlineSearch } from "react-icons/ai"
+import { AiOutlineArrowRight, AiOutlineArrowLeft } from "react-icons/ai"
+
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import Link from 'next/link';
@@ -19,16 +20,27 @@ const workSans = Work_Sans({ subsets: ['latin'] })
 
 export default function JobComponent({ jobs, metadata }) {
 
+
+
+
     let user = useSelector((redux_store) => {
         return redux_store.user.value
     })
+
 
 
     const [cardView, setCardView] = useState("grid")
 
     const router = useRouter();
 
-    let queries = {}
+
+
+
+
+    // let queries = {}
+
+    let [queries, setQueries] = useState({})
+    let temp = { ...queries }
 
 
     function handleListView() {
@@ -41,12 +53,23 @@ export default function JobComponent({ jobs, metadata }) {
 
     let queryString = ``
     let arr = []
+
+    // console.log(router.query);
+
+    useEffect(() => {
+        if (router.query) {
+            setQueries(router.query)
+        }
+    }, [router.isReady])
+
+
     function handleChange(event) {
 
-        queries[event.target.name] = event.target.value
-        // console.log(queries);
 
-        arr = Object.entries(queries)
+        temp[event.target.name] = event.target.value
+        // console.log(queries);
+        setQueries(temp)
+        // arr = Object.entries(queries)
         // console.log(arr);
 
     }
@@ -56,7 +79,27 @@ export default function JobComponent({ jobs, metadata }) {
 
         queries["search_term"] = event.target.search_term.value
 
-        // console.log(queries);
+        console.log(queries);
+        //     arr = Object.entries(queries)
+        //     // console.log(arr);
+
+
+
+        //     arr.forEach(el => {
+        //         queryString += `${el[0]}=${el[1]}&`
+        //     })
+        //     //    console.log(queryString);
+        //     router.push(`${router.route}?${queryString}`)
+
+
+
+    }
+
+
+
+
+    useEffect(() => {
+
         arr = Object.entries(queries)
         // console.log(arr);
 
@@ -68,9 +111,7 @@ export default function JobComponent({ jobs, metadata }) {
         //    console.log(queryString);
         router.push(`${router.route}?${queryString}`)
 
-
-
-    }
+    }, [queries])
 
     // let arr = Object.entries(queries)
     // console.log(arr);
@@ -78,7 +119,25 @@ export default function JobComponent({ jobs, metadata }) {
 
     // console.log(router);
 
+    // console.log(metadata);
 
+    let totalJob = 0
+    let currentPage = 0
+    let perPage = 0
+    let totalPage = 0
+    if (metadata) {
+        totalJob = metadata[0]?.total
+        currentPage = metadata[0]?.page
+        perPage = metadata[0]?.per_page
+        totalPage = Math.ceil(totalJob / perPage)
+
+
+    }
+
+    // console.log("total: ", totalJob);
+    // console.log("page: ", currentPage);
+    // console.log("perPage:", perPage);
+    // console.log("totalPage", totalPage);
 
 
     return <>
@@ -105,16 +164,26 @@ export default function JobComponent({ jobs, metadata }) {
 
 
                             <form onSubmit={handleSubmit} className="flex gap-4 flex-wrap">
-                                <input type='text' name='search_term' placeholder='Job Title' className='border border-primary-tint p-1 px-5 outline-none' />
-                                <button type='submit' className='bg-primary-dark border border-primary-dark text-white p-2'>Filter</button>
+                                <input type='text' name='search_term' placeholder='Job Title' className='border border-primary-tint p-1 px-5 outline-none'
+
+                                    value={queries?.search_term}
+                                    onChange={handleChange}
+                                />
+
+                                <button type='button' className='bg-primary-dark border border-primary-dark text-white p-2 hover:bg-white hover:text-primary-dark' onClick={() => {
+                                    setQueries({ search_term: "", sort_by: "", per_page: 10 })
+                                    router.push(router.route)
+                                }}>Clear Filter</button>
                                 <label className={`${exo2.className} font-medium text-xl text-primary-dark`}>Per Page:</label>
-                                <select className="border border-primary-tint p-1 px-5 outline-none" name='per_page' onChange={
-                                    handleChange
-                                    // (event) => {
-                                    // console.log(router)
-                                    // router.push(`${router.route}?per_page=${event.target.value}`)
-                                    // }
-                                }>
+                                <select className="border border-primary-tint p-1 px-5 outline-none" name='per_page'
+                                    value={queries?.per_page} defaultValue={10}
+                                    onChange={
+                                        handleChange
+                                        // (event) => {
+                                        // console.log(router)
+                                        // router.push(`${router.route}?per_page=${event.target.value}`)
+                                        // }
+                                    }>
                                     <option value={3}>3</option>
                                     <option value={5}>5</option>
                                     <option value={10}>10</option>
@@ -122,13 +191,15 @@ export default function JobComponent({ jobs, metadata }) {
                                 </select>
 
                                 <label className={`${exo2.className} font-medium text-xl text-primary-dark`}>Sort By:</label>
-                                <select className="border border-primary-tint p-1 px-5 outline-none" name='sort_by' onChange={
-                                    handleChange
-                                    //     (event) => {
+                                <select className="border border-primary-tint p-1 px-5 outline-none" name='sort_by'
+                                    value={queries?.sort_by}
+                                    onChange={
+                                        handleChange
+                                        //     (event) => {
 
-                                    //     router.push(`${router.route}?sort_by=${event.target.value}`)
-                                    // }
-                                } >
+                                        //     router.push(`${router.route}?sort_by=${event.target.value}`)
+                                        // }
+                                    } >
                                     <option value={""}>Default</option>
                                     <option value={"latest"}>Latest</option>
                                     <option value={"old"}>Old</option>
@@ -178,9 +249,24 @@ export default function JobComponent({ jobs, metadata }) {
 
                         </div>
                     </div>
+                    <div className='mt-8 flex justify-between relative'>
+
+                        {
+                            currentPage != 1 && <div className={`${exo2.className} bg-primary-dark border border-primary-dark text-white py-2 px-5 w-fit hover:bg-white hover:text-primary-dark`} onClick={() => {
+                                let page = currentPage - 1
+                                setQueries({ ...queries, "page": page })
+                            }}> Prev <AiOutlineArrowLeft className='inline-block' /></div>
+                        }
 
 
 
+                        {
+                            currentPage != totalPage && <div className={` absolute right-0 ${exo2.className} bg-primary-dark border border-primary-dark text-white py-2 px-5 w-fit hover:bg-white hover:text-primary-dark`} onClick={() => {
+                                let page = currentPage + 1
+                                setQueries({ ...queries, "page": page })
+                            }}>Next <AiOutlineArrowRight className='inline-block' /></div>
+                        }
+                    </div>
                 </div>
             </div>
         </section>

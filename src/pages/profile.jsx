@@ -26,27 +26,27 @@ function Profile() {
 
     return <>
         <Header />
-<section>
-<div className="bg-tertiary">
-<div className="container py-28 flex justify-center">
-        <div className="sm:flex  justify-center w-full md:w-fit  gap-10 bg-white p-8 hover:border hover:border-primary-dark">
-            <div className="h-[200px] w-[200px] mb-8 mx-4 sm:mb-0 border-primary-tint/50 border-4 rounded-md">
-                <Image src={DefaultAvatar} className="h-full w-full aspect-square"  alt="defaultAvatar"/>
+        <section>
+            <div className="bg-tertiary">
+                <div className="container py-28 flex justify-center">
+                    <div className="sm:flex  justify-center w-full md:w-fit  gap-10 bg-white p-8 hover:border hover:border-primary-dark">
+                        <div className="h-[200px] w-[200px] mb-8 mx-4 sm:mb-0 border-primary-tint/50 border-4 rounded-md">
+                            <Image src={DefaultAvatar} className="h-full w-full aspect-square" alt="defaultAvatar" />
 
-            </div>
-            <form className="flex-col items-center">
-                {
-                    user_arr && user_arr.map((el, index) => {
-                        return <div className="flex justify-between px-4 sm:gap-8" key={el[0] + el[1]}>
-                            <label className={`after:content-[':'] after:ml-0.5 text-header font-medium text-base ${exo2.className} capitalize py-2`}>{el[0]}</label>
-                            <input className="mb-5 outline-none border rounded-md px-5 py-2" disabled value={el[1]} />
                         </div>
-                    })
-                }
-            </form>
-        </div>
-        </div>
-        </div>
+                        <form className="flex-col items-center">
+                            {
+                                user_arr && user_arr.map((el, index) => {
+                                    return <div className="flex justify-between px-4 sm:gap-8" key={el[0] + el[1]}>
+                                        <label className={`after:content-[':'] after:ml-0.5 text-header font-medium text-base ${exo2.className} capitalize py-2`}>{el[0]}</label>
+                                        <input className="mb-5 outline-none border rounded-md px-5 py-2" disabled value={el[1]} />
+                                    </div>
+                                })
+                            }
+                        </form>
+                    </div>
+                </div>
+            </div>
         </section>
         <Footer />
     </>

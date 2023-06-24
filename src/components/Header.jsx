@@ -23,14 +23,14 @@ export default function Header() {
                     <div className="md:hidden">
                         <Hamburger toggled={isOpen} toggle={setOpen} className="cursor-pointer absolute top-0 right-0" />
                     </div>
-                    
+
 
                     {isOpen && <div className="absolute top-0 left-0 w-1/2  h-screen bg-[#E4E6E9] px-2 md:hidden">
-                    <Link href={"/"}><Image src={HeaderLogo} className="pt-5" priority alt="headerLogo" /></Link>
+                        <Link href={"/"}><Image src={HeaderLogo} className="pt-5" priority alt="headerLogo" /></Link>
                         <Nav />
                     </div>}
 
-                    <div className="hidden md:flex md:gap-4 items-center justify-between w-2/3"><Nav /></div>
+                    <div className="hidden md:flex md:gap-4 items-center justify-between w-3/4"><Nav /></div>
                 </div>
             </nav>
         </>

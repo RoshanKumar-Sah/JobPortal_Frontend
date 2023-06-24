@@ -37,7 +37,7 @@ function AppliedJobs() {
 
         <section>
             <div className="bg-tertiary">
-           
+
                 <div className="container flex justify-center py-28">
 
 
@@ -78,7 +78,7 @@ function AppliedJobs() {
 
                             })
                         }
-                                            <h2 className={`text-lg font-semibold text-primary-dark ${exo2.className}`}>Total Applied Jobs : {appliedJobs.length}</h2>
+                        <h2 className={`text-lg font-semibold text-primary-dark ${exo2.className}`}>Total Applied Jobs : {appliedJobs.length}</h2>
 
                     </div>
                 </div>

@@ -5,37 +5,49 @@ import { useEffect, useState } from "react";
 import JobListing from "@/components/JobListing";
 import Footer from "@/components/Footer";
 import ProtectedPage from "@/components/ProtectedPage";
+import { useRouter } from "next/router";
 
-function EmployerJobs(){
+function EmployerJobs() {
 
-let[jobs, setJobs] = useState([])
-let[metadata, setMetadata] = useState([])
+    let [jobs, setJobs] = useState([])
+    let [metadata, setMetadata] = useState([])
 
-    useEffect(()=>{
+    const router = useRouter()
+    // console.log(router.query);
 
-        if(localStorage.getItem("employer_token"))
-        axios.get(`${URL_Domain}/empJobs`, {
-            headers:{
-                Authorization: "Bearer "+localStorage.getItem("employer_token")
-            }
-        }).then(res =>{
-            // console.log(res.data[0].jobs);
-            setJobs(res.data[0].jobs)
-            // console.log(res.data[0].meta_data);
-            setMetadata(res.data[0].meta_data)
-        }).catch(err =>{
-            // console.log(err);
-        })
-    },[])
+    let url = `${URL_Domain}/empJobs?`
+    let temp = Object.entries(router.query)
+    // console.log(temp);
+    temp.forEach(el => {
+        url += `${el[0]}=${el[1]}&`
+    })
 
-return<>
-    <Header />
+    useEffect(() => {
 
-    
-        
+        if (localStorage.getItem("employer_token"))
+
+            axios.get(url, {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem("employer_token")
+                }
+            }).then(res => {
+                // console.log(res.data[0].jobs);
+                setJobs(res.data[0].jobs)
+                // console.log(res.data[0].meta_data);
+                setMetadata(res.data[0].meta_data)
+            }).catch(err => {
+                // console.log(err);
+            })
+    }, [url])
+
+    return <>
+        <Header />
+
+
+
         <JobListing jobs={...jobs} metadata={...metadata} />
-     
-    <Footer />
+
+        <Footer />
     </>
 }
 

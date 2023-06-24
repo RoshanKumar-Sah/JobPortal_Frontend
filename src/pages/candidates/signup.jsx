@@ -170,15 +170,15 @@ function ClientSignup() {
                             {error.password && <small className="text-red-500">{error.password}</small>}
 
                             <button type="submit" disabled={submitting} className="flex gap-2 disabled:bg-black/70 w-full h-fit justify-center items-center border border-black bg-primary-dark py-2 px-7 text-white hover:text-primary-dark hover:bg-white mt-8 rounded-md">Register {submitting && <TailSpin
-            height="20"
-            width="20"
-            color="#ffffff"
-            ariaLabel="tail-spin-loading"
-            radius="1"
-            wrapperStyle={{}}
-            wrapperClass=""
-            visible={true}
-          />}</button>
+                                height="20"
+                                width="20"
+                                color="#ffffff"
+                                ariaLabel="tail-spin-loading"
+                                radius="1"
+                                wrapperStyle={{}}
+                                wrapperClass=""
+                                visible={true}
+                            />}</button>
 
                             <p className={`pt-6 ${workSans.className} font-medium text-lg text-primary-tint`}>Already have an account? <Link href={"/candidates/login"} className={`${exo2.className} text-primary-dark`}>Login</Link></p>
                         </form>

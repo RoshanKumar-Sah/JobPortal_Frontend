@@ -17,53 +17,53 @@ function App({ Component, pageProps }) {
 
   const dispatch = useDispatch()
 
-useEffect(()=>{
+  useEffect(() => {
 
-  
-  
-    if(localStorage.getItem("client_token")){
-      axios.get("http://localhost:8000/api/getClient", {
-        headers:{
-          Authorization: "Bearer "+localStorage.getItem("client_token") 
+
+
+    if (localStorage.getItem("client_token")) {
+      axios.get(`${URL_Domain}/getClient`, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("client_token")
         }
-      }).then(res=>{
+      }).then(res => {
         // console.log(res.data);
-      dispatch(setUser({...res.data, role: "client"}))
-      }).catch(err =>{
+        dispatch(setUser({ ...res.data, role: "client" }))
+      }).catch(err => {
         // console.log(err);
       })
-    }else if(localStorage.getItem("employer_token")){
-      axios.get("http://localhost:8000/api/getEmployer", {
-        headers:{
-          Authorization: "Bearer "+localStorage.getItem("employer_token") 
+    } else if (localStorage.getItem("employer_token")) {
+      axios.get(`${URL_Domain}/getEmployer`, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("employer_token")
         }
-      }).then(res=>{
+      }).then(res => {
         // console.log(res.data);
-      dispatch(setUser({...res.data, role: "employer"}))
-      }).catch(err =>{
+        dispatch(setUser({ ...res.data, role: "employer" }))
+      }).catch(err => {
         // console.log(err);
       })
-    }else{
+    } else {
       dispatch(stopLoading())
     }
-  
-  
- 
-},[])
+
+
+
+  }, [])
 
 
   return <Component {...pageProps} />
-  
+
 }
 
 
 
-const WithReduxProvider = (App) =>{
-  function Wrapper(props){
+const WithReduxProvider = (App) => {
+  function Wrapper(props) {
 
-return <Provider store={store}>
- <App {...props} /> 
- </Provider>
+    return <Provider store={store}>
+      <App {...props} />
+    </Provider>
 
   }
 

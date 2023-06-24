@@ -12,6 +12,12 @@ import { TailSpin } from 'react-loader-spinner';
 import { ToastContainer, toast } from 'react-toastify';
 import Footer from "@/components/Footer";
 import { useSelector } from "react-redux";
+import ProtectedComponent from "@/components/ProtectedComponent";
+import { EMPLOYER } from "@/const/role";
+
+import {FiGlobe} from "react-icons/fi"
+import {AiOutlineContacts, AiOutlineEdit, AiOutlineDelete} from "react-icons/ai"
+import {BsBodyText} from "react-icons/bs"
 
 
 const exo2 = Exo_2({ subsets: ['latin'] })
@@ -20,6 +26,8 @@ const workSans = Work_Sans({ subsets: ['latin'] })
 
 export default function SingleJob({ job }) {
 
+
+    const router = useRouter()
 
     let user = useSelector((redux_store) => {
         return redux_store.user.value
@@ -39,6 +47,7 @@ export default function SingleJob({ job }) {
     const createdAt_formatted = createdAtDate.toLocaleDateString("en-US", options);
 
     let [submitting, setSubmitting] = useState(false)
+    let [delSubmit, setDelSubmit] = useState(false)
 
     // const router = useRouter()
 
@@ -90,13 +99,36 @@ export default function SingleJob({ job }) {
                 setSubmitting(false)
             })
 
-        }else{
+        } else {
             toast.error("Login to Apply", {
                 position: toast.POSITION.TOP_RIGHT
             });
         }
 
     }
+
+    function handleDelete(){
+        if (localStorage.getItem("employer_token")) {
+            setDelSubmit(true)
+            axios.delete(`${URL_Domain}/jobs/${_id}`, {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem("employer_token")
+                }
+            }).then(res=>{
+                // console.log(res.status , res.statusText);
+                // toast.success("Deleted", {
+                //     position: toast.POSITION.TOP_RIGHT
+                // });
+                router.push("/employers/myJobs")
+                setDelSubmit(false)
+            }).catch(err =>{
+                console.log(err.response.data.msg);
+                toast.error(err.response.data.msg, {
+                    position: toast.POSITION.TOP_RIGHT
+                });
+                setDelSubmit(false)
+            })
+    }}
 
     return <>
         <Header />
@@ -106,7 +138,7 @@ export default function SingleJob({ job }) {
                 <div className="container  pt-28 pb-14">
                     <div className="grid md:grid-cols-4 gap-8 justify-center">
 
-                        <div className="relative border border-primary-tint/50 rounded-md">
+                        <div className="relative border border-primary-tint/50 rounded-md bg-white">
                             <div className="w-full h-full p-4">
                                 {cover_image ? <Image src={cover_image} height={200} width={200} className='w-full h-full  rounded-md' alt='cover_image' /> :
 
@@ -127,9 +159,9 @@ export default function SingleJob({ job }) {
                             <div className={`${workSans.className} text-sm text-primary-tint font-normal capitalize mt-4`}>
                                 <p>{EmpName}</p>
 
-                                <p>{EmpContact}</p>
-                                <p className="lowercase">{EmpWebsite}</p>
-                                <p>{EmpDescription}</p>
+                                <p><AiOutlineContacts className="inline-block" /> {EmpContact}</p>
+                                <p className="lowercase"><FiGlobe className="inline-block" /> {EmpWebsite}</p>
+                                <p><BsBodyText className="inline-block" /> {EmpDescription}</p>
                             </div>
 
                         </div>
@@ -152,7 +184,7 @@ export default function SingleJob({ job }) {
                         </div>
 
 
-                        <div className="flex justify-center items-center">
+                        <div className="flex justify-center gap-8 items-center">
 
                             {
                                 user?.role != "employer" ? <button type="button" onClick={handleClick} disabled={submitting} className='disabled:bg-black/70 flex gap-2 w-fit h-fit py-2 px-7 justify-center items-center border border-black bg-primary-dark group hover:bg-white text-white hover:text-primary-dark'>
@@ -168,8 +200,10 @@ export default function SingleJob({ job }) {
                                     />}
                                 </button>
                                     :
-                                    <button type="button" disabled={submitting} className='disabled:bg-black/70 flex gap-2 w-fit h-fit py-2 px-7 justify-center items-center border border-black bg-primary-dark group hover:bg-white text-white hover:text-primary-dark'>
-                                        Edit {submitting && <TailSpin
+                                    <button type="button"  disabled={submitting} onClick={()=>{
+                                        router.push(`/employers/myJobs/edit/${router.query.slug}`)
+                                    }} className='disabled:bg-black/70 flex gap-2 w-fit h-fit py-2 px-7 justify-center items-center border border-black bg-primary-dark group hover:bg-white text-white hover:text-primary-dark'>
+                                     <AiOutlineEdit className='inline-block' />   Edit {submitting && <TailSpin
                                             height="20"
                                             width="20"
                                             color="#ffffff"
@@ -183,20 +217,35 @@ export default function SingleJob({ job }) {
 
                             }
 
+                            <ProtectedComponent role={EMPLOYER}>
+                            <button type="button" disabled={delSubmit} onClick={handleDelete} className='disabled:bg-black/70 flex gap-2 w-fit h-fit py-2 px-7 justify-center items-center border border-black bg-primary-dark group hover:bg-white text-white hover:text-primary-dark'>
+                                     <AiOutlineDelete className="inline-block" />   Delete {delSubmit && <TailSpin
+                                            height="20"
+                                            width="20"
+                                            color="#ffffff"
+                                            ariaLabel="tail-spin-loading"
+                                            radius="1"
+                                            wrapperStyle={{}}
+                                            wrapperClass=""
+                                            visible={true}
+                                        />}
+                                    </button>
+                            </ProtectedComponent>
+
 
                         </div>
                     </div>
 
 
-<hr className="h-1 w-full bg-black/50 mt-4"/>
+                    <hr className="h-1 w-full bg-black/50 mt-4" />
                 </div>
                 <div className="container pt-14 pb-28">
-                <h2 className={`text-lg font-semibold text-primary-dark ${exo2.className} mb-4`}>Job Description</h2>
-                <div dangerouslySetInnerHTML={{ __html: description }}>
-               </div>
+                    <h2 className={`text-lg font-semibold text-primary-dark ${exo2.className} mb-4`}>Job Description</h2>
+                    <div dangerouslySetInnerHTML={{ __html: description }}>
+                    </div>
+                </div>
             </div>
-            </div>
-            
+
         </section>
 
         <Footer />
