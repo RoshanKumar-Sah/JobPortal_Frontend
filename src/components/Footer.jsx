@@ -16,7 +16,7 @@ export default function Footer() {
           <div className='pt-28 pb-14 flex justify-around flex-wrap gap-8 md:gap-0'>
 
             <div>
-              <Image src={FooterLogo} alt='footer_logo' />
+            <Link href={"/"}><Image src={FooterLogo} alt='footer_logo' /></Link>
             </div>
 
             <div className='text-white  flex flex-col items-center'>
