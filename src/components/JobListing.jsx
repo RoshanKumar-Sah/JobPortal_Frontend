@@ -16,9 +16,10 @@ import { EMPLOYER } from "@/const/role"
 
 const exo2 = Exo_2({ subsets: ['latin'] })
 const workSans = Work_Sans({ subsets: ['latin'] })
+import { Bars } from 'react-loader-spinner'
 
 
-export default function JobComponent({ jobs, metadata }) {
+export default function JobComponent({ jobs, metadata, isLoading }) {
 
 
 
@@ -148,6 +149,17 @@ export default function JobComponent({ jobs, metadata }) {
                     {/* <form onSubmit={handleSubmit} className='flex justify-center mb-4' >
                         
                     </form> */}
+                    {
+                        isLoading && <div className="flex justify-center items-center  h-screen"><Bars
+                            height="80"
+                            width="80"
+                            color="#000000"
+                            ariaLabel="bars-loading"
+                            wrapperStyle={{}}
+                            wrapperClass=""
+                            visible={true}
+                        /></div>
+                    }
 
                     <ProtectedComponent role={EMPLOYER}>
                         <div className='flex justify-center my-8 w-fit items-center border border-black bg-primary-dark group hover:bg-white'>
