@@ -264,7 +264,7 @@ export default function JobComponent({ jobs, metadata, isLoading }) {
                     <div className='mt-8 flex justify-between relative'>
 
                         {
-                            currentPage != 1 && <div className={`${exo2.className} bg-primary-dark border border-primary-dark text-white py-2 px-5 w-fit hover:bg-white hover:text-primary-dark`} onClick={() => {
+                            currentPage != 1 && <div className={`${exo2.className} cursor-pointer bg-primary-dark border border-primary-dark text-white py-2 px-5 w-fit hover:bg-white hover:text-primary-dark`} onClick={() => {
                                 let page = currentPage - 1
                                 setQueries({ ...queries, "page": page })
                             }}> Prev <AiOutlineArrowLeft className='inline-block' /></div>
@@ -273,7 +273,7 @@ export default function JobComponent({ jobs, metadata, isLoading }) {
 
 
                         {
-                            currentPage != totalPage && <div className={` absolute right-0 ${exo2.className} bg-primary-dark border border-primary-dark text-white py-2 px-5 w-fit hover:bg-white hover:text-primary-dark`} onClick={() => {
+                            currentPage != totalPage && <div className={` absolute right-0 ${exo2.className} cursor-pointer bg-primary-dark border border-primary-dark text-white py-2 px-5 w-fit hover:bg-white hover:text-primary-dark`} onClick={() => {
                                 let page = currentPage + 1
                                 setQueries({ ...queries, "page": page })
                             }}>Next <AiOutlineArrowRight className='inline-block' /></div>
