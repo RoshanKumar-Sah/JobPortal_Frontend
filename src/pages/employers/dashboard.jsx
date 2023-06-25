@@ -8,6 +8,11 @@ import { CountUp } from 'use-count-up'
 import { Exo_2, Work_Sans } from 'next/font/google'
 import Footer from "@/components/Footer";
 import ProtectedPage from "@/components/ProtectedPage";
+import DefaultProfile from "@/assets/default_profile_avatar.jpg"
+import { useSelector } from "react-redux";
+import Image from "next/image";
+import AppliedCandidates from "../../components/AppliedCandidates";
+
 
 
 
@@ -19,7 +24,9 @@ ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarEle
 
 function Dashboard() {
 
-
+    let user = useSelector((redux_store) => {
+        return redux_store.user.value
+    })
 
     const currentDate = new Date();
     const year = currentDate.getFullYear();
@@ -213,20 +220,45 @@ function Dashboard() {
     return (<>
         <Header />
         <section>
-            <div className="bg-tertiary pt-28 pb-28">
+            <div className="bg-white pt-28 pb-28">
                 <div className="container">
-                    <div className="flex gap-20 items-center justify-center md:justify-between sm:px-8 w-full bg-white py-8 border border-primary-dark flex-wrap">
-                        <div className={`text-4xl font-semibold text-primary-dark ${exo2.className}`}>
-                            <div className="flex gap-12 justify-between">
+
+
+                    <div className="flex flex-col md:flex-row gap-8 justify-center md:items-center md:justify-between h-fit w-full border shadow-md py-9 px-4  sm:px-9 sm:py-0 ">
+                        <div className="flex items-center gap-8">
+                            <div>
+                                <Image src={DefaultProfile} className='w-24 h-24 rounded-full' alt='default_profile' />
+                            </div>
+                            <div>
+                                <h2 className={`${workSans.className} font-semibold text-primary-tint text-lg mb-1`}>Hello,</h2>
+                                <h2 className={`${exo2.className} font-bold text-2xl text-primary-tint`}>{user.name}</h2>
+                            </div>
+                        </div>
+
+                        <div className={`${exo2.className} font-bold text-2xl text-primary-tint flex flex-col md:flex-row gap-8`}>
+                            <div className="flex gap-8">
                                 <h2 >Active Jobs</h2>
                                 <CountUp isCounting start={0} end={active} />
                             </div>
 
-                            <div className="flex gap-12 justify-between">
+                            <div className="flex gap-8">
                                 <h2>Inactive Jobs</h2>
                                 <CountUp isCounting start={0} end={inactive} />
                             </div>
                         </div>
+
+                        <div className={`${exo2.className} font-bold text-2xl text-primary-tint flex gap-8`}>
+                            <h2 className="">Total Applied</h2>
+
+                            <CountUp isCounting start={0} end={apply.length} />
+                        </div>
+                    </div>
+
+
+                    <div className="mt-14 flex gap-20 items-center justify-center md:justify-around sm:px-8 w-full bg-white hover:bg-tertiary py-8 border shadow-md hover:border-primary-dark flex-wrap">
+
+
+
 
                         <div className=" pt-2 md:pl-2">
                             <Pie data={pieData} />
@@ -238,6 +270,8 @@ function Dashboard() {
                     </div>
 
 
+
+                    <AppliedCandidates />
 
 
 

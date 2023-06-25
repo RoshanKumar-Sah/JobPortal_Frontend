@@ -16,7 +16,7 @@ export default function Footer() {
           <div className='pt-28 pb-14 flex justify-around flex-wrap gap-8 md:gap-0'>
 
             <div>
-            <Link href={"/"}><Image src={FooterLogo} alt='footer_logo' /></Link>
+              <Link href={"/"}><Image src={FooterLogo} alt='footer_logo' /></Link>
             </div>
 
             <div className='text-white  flex flex-col items-center'>
@@ -32,7 +32,7 @@ export default function Footer() {
               <h5 className={`${exo2.className} font-semibold text-xl mb-6`}>For Candidate&apos;s</h5>
               <ul className={`${workSans.className} font-medium text-base text-[#b3b3b3]`}>
                 <li className='hover:text-white'><Link href={"/jobs"}>Browse Jobs</Link></li>
-                <li className='hover:text-white'><Link href={"/profile"}>Profile</Link></li>
+
                 <li className='hover:text-white'><Link href={"/candidates/appliedJobs"}>Applied Jobs</Link></li>
               </ul>
             </div>
@@ -44,8 +44,8 @@ export default function Footer() {
                 <li className='hover:text-white'> <Link href={"/employers/myJobs"}>My Jobs</Link></li>
                 <li className='hover:text-white'><Link href={"/employers/myJobs/postJob"}>Post Job</Link></li>
                 <li className='hover:text-white'><Link href={"/employers/dashboard"}>Dashboard</Link></li>
-                <li className='hover:text-white'><Link href={"/employers/appliedCandidates"}>Applied Candidates</Link></li>
-                <li className='hover:text-white'><Link href={"/profile"}>Profile</Link></li>
+
+
               </ul>
             </div>
 

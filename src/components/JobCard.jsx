@@ -33,7 +33,7 @@ export default function JobCard({ job, view }) {
 
 
   return <>
-    <div className={`bg-white  rounded-md hover:border hover:border-primary-dark ${view == "list" ? "flex relative w-full md:w-full items-center" : "w-full"}`}>
+    <div className={`bg-white  rounded-md border hover:border hover:border-primary-dark ${view == "list" ? "flex relative w-full md:w-full items-center" : "w-full"}`}>
       <div className={`${view != "list" ? "w-full h-2/5 p-4 relative" : ""}`}>
         <div className={`p-1 bg-tertiary absolute right-6 top-6 rounded-md ${exo2.className} capitalize`}>
           <p>{type[0]}</p>

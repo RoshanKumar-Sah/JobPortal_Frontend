@@ -27,6 +27,22 @@ export default function Banner() {
           <div className=' w-full md:w-1/2 mt-28'>
             <h1 className={`${exo2.className} text-6xl font-semibold text-header mb-5`}>Find Your <span className='font-extrabold text-7xl'>Dream Jobs</span> With Based On Your Skills</h1>
             <p className={`font-normal text-xl leading-5 mb-12 text-primary-tint ${workSans.className}`}>Jobs are available on your skills, perfect jobs to make bright future & get your choose jobs become a strong.</p>
+         
+            <div className={`container mt-14 md:mt-0  w-full `}>
+            <div className='p-5  bg-secondary-tint border border-secondary-tint rounded-2xl w-full md:rounded-full'>
+              <form onSubmit={handleSearch} className='flex flex-col gap-5 md:flex-row md:justify-between'>
+                <input type='text' placeholder='Job Title' name='search_term' className='outline-none border border-primary-dark rounded-full py-3 px-4 w-full md:w-full' />
+                {/* <select placeholder='Job Category' className='outline-none text-primary-tint border border-primary-dark rounded-full py-3 px-4 w-full md:w-1/3'>
+                  <option className='hidden'>Select Category</option>
+                  <option>FrontEnd</option>
+                  <option>BackEnd</option>
+                  <option>Full Stack</option>
+                  <option>UI/UX</option>
+                </select> */}
+                <button type='submit' className='flex justify-center items-center border border-black bg-primary-dark text-white hover:bg-white hover:text-primary-dark px-10 py-3 w-fit  rounded-full md:px-12'>Search</button>
+              </form>
+            </div>
+          </div>
           </div>
           <div className='w-full md:w-2/5 mt-28'>
             <div className='grid grid-cols-2 gap-10 grid-rows-2'>
@@ -46,10 +62,10 @@ export default function Banner() {
             </div>
           </div>
 
-          <div className={`container mt-14 md:mt-0 md:absolute top-[50%] w-full md:-ml-3 md:w-4/6`}>
-            <div className='p-5  bg-secondary-tint border border-secondary-tint rounded-2xl w-full md:rounded-full'>
-              <form onSubmit={handleSearch} className='flex flex-col gap-5 md:flex-row md:justify-between'>
-                <input type='text' placeholder='Job Title' name='search_term' className='outline-none border border-primary-dark rounded-full py-3 px-4 w-full md:w-full' />
+          {/* <div className={`container mt-14 md:mt-0 md:absolute bottom-[50%] w-full md:-ml-3 md:w-4/6`}> */}
+            {/* <div className='p-5  bg-secondary-tint border border-secondary-tint rounded-2xl w-full md:rounded-full'> */}
+              {/* <form onSubmit={handleSearch} className='flex flex-col gap-5 md:flex-row md:justify-between'> */}
+                {/* <input type='text' placeholder='Job Title' name='search_term' className='outline-none border border-primary-dark rounded-full py-3 px-4 w-full md:w-full' /> */}
                 {/* <select placeholder='Job Category' className='outline-none text-primary-tint border border-primary-dark rounded-full py-3 px-4 w-full md:w-1/3'>
                   <option className='hidden'>Select Category</option>
                   <option>FrontEnd</option>
@@ -57,10 +73,10 @@ export default function Banner() {
                   <option>Full Stack</option>
                   <option>UI/UX</option>
                 </select> */}
-                <button type='submit' className='flex justify-center items-center border border-black bg-primary-dark text-white hover:bg-white hover:text-primary-dark px-10 py-3 w-fit  rounded-full md:px-12'>Search</button>
-              </form>
-            </div>
-          </div>
+                {/* <button type='submit' className='flex justify-center items-center border border-black bg-primary-dark text-white hover:bg-white hover:text-primary-dark px-10 py-3 w-fit  rounded-full md:px-12'>Search</button> */}
+              {/* </form> */}
+            {/* </div> */}
+          {/* </div> */}
 
         </div>
       </div>
