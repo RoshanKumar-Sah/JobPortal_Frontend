@@ -171,38 +171,42 @@ function Upsert({ job }) {
             form_data.append("deadline", data.deadline)
 
 
-            // console.log(data.profile_image);
+            console.log(data.profile_image);
+            if (data.profile_image) {
 
-            if (stringProfile) {
-                // if(typeof(profile_image) == "object"){
-                form_data.append("profile_image", data.profile_image)
-                // }
 
-            } else {
+                if (stringProfile) {
+                    // if(typeof(profile_image) == "object"){
+                    form_data.append("profile_image", data.profile_image)
+                    // }
 
-                let temp_profile = [...data.profile_image]
-                temp_profile.forEach(img => {
+                } else {
 
-                    form_data.append("profile_image", img)
-                })
+                    let temp_profile = [...data.profile_image]
+                    temp_profile.forEach(img => {
+
+                        form_data.append("profile_image", img)
+                    })
+                }
             }
 
             // form_data.append("profile_image", data.profile_image)
             // form_data.append("cover_image", data.cover_image)
 
+            if (data.cover_image) {
+                if (stringCover) {
 
-            if (stringCover) {
-                // if(typeof(profile_image) == "object"){
-                form_data.append("cover_image", data.cover_image)
-                // }
+                    form_data.append("cover_image", data.cover_image)
 
-            } else {
 
-                let temp_cover = [...data.cover_image]
-                temp_cover.forEach(img => {
+                } else {
 
-                    form_data.append("cover_image", img)
-                })
+                    let temp_cover = [...data.cover_image]
+                    temp_cover.forEach(img => {
+
+                        form_data.append("cover_image", img)
+                    })
+                }
             }
 
 
@@ -249,7 +253,8 @@ function Upsert({ job }) {
                 });
                 setSubmitting(false)
             }).catch(err => {
-                // console.log(err.response.data.msg);
+                console.log(err);
+                console.log(err.response.data);
                 // console.log(err.response.data.errors);
                 if (err.response.data.errors && err.response.data.errors.length) {
                     err.response.data.errors.forEach(el => {
@@ -258,6 +263,7 @@ function Upsert({ job }) {
                         });
 
                     })
+                    setSubmitting(false)
 
 
 
